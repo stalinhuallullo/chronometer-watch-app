@@ -35,12 +35,12 @@ code {
   margin-top: 30px;
 }
 #cajaResultados {
-  display: none;
+  text-align: center;
 }
 .content-controls{
   text-align: center;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   width: 250px;
   margin: 0 auto;
   padding-top: 1.3rem;
@@ -66,4 +66,23 @@ button#comenzar.btn + button#pausar.btn {
 }
 .icon-reload{
   
+}
+.content-timers{
+  max-width: 200px;
+    margin: 0 auto;
+}
+.item-timer{
+  display: grid;
+  grid-template-columns: 30px auto 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+  align-items: center;
+  color: #00000085;
+}
+.item-timer > span:nth-child(2){
+  text-align: left;
+}
+.btn-delete{
+  background: #d44;
 }

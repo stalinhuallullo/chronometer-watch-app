@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) => {
+  console.log("StopwatchControls");
 
     const [running, setRunning] = useState(false);
     const [textControl, setTextControl] = useState("Start");
@@ -21,7 +22,7 @@ export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) 
         }
         return () => clearInterval(interval);
       }, [running]);
-
+ 
 
     const handlerEvents = (event) => {
         console.log("==> ", event);
@@ -56,40 +57,14 @@ export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) 
   const  handlerMarker = () => {
     listTime.push(actualTime);
     setListTime(listTime);
-    console.log("handlerMarker");
-
+    console.log("==> ", listTime);
   }
 
 
   return (
-    <div class="content-controls">
+    <div className="content-controls">
         <button className="btn" onClick={() => handlerEvents(textControl)} >{textControl}</button>
-        <button className="btn" onClick={() => handlerEvents(textControlMarker)}>{textControlMarker}</button>       
-        
-      {/*<button id="comenzar" class="btn">
-                  <IconContext.Provider
-                      value={{ color: 'white', size: '13px' }}>
-                      <FaPlay/>
-                  </IconContext.Provider>
-      </button>
-      <button id="pausar" class="btn">
-                  <IconContext.Provider
-                      value={{ color: 'white', size: '13px' }}>
-                      <FaPause/>
-                  </IconContext.Provider>
-      </button>
-      <button id="marcar" class="btn">
-                  <IconContext.Provider
-                      value={{ color: 'white', size: '13px' }}>
-                      <FaFlag/>
-                  </IconContext.Provider>
-      </button>
-      <button id="cancelar" class="btn">
-                  <IconContext.Provider
-                      value={{ color: 'white', size: '13px' }}>
-                      <FaSquare/>
-                  </IconContext.Provider>
-      </button>*/}
+        <button className="btn" onClick={() => handlerEvents(textControlMarker)}>{textControlMarker}</button>
     </div>
   )
 }
