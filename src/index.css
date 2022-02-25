@@ -11,3 +11,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: Calculator;
+  src: url('./assets/fonts/Calculator.ttf');
+}
+.container-guay {
+  max-width: 800px;
+  padding-bottom: 20px;
+  margin: 0 auto;
+}
+
+#marcador {
+  font-family: Calculator;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2em;
+}
+#marcador > p{
+  margin: 0;
+}
+#cajaControles {
+  margin-top: 30px;
+}
+#cajaResultados {
+  display: none;
+}
+.content-controls{
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 250px;
+  margin: 0 auto;
+  padding-top: 1.3rem;
+  grid-gap: 0.3rem;
+}
+.btn {
+  display: block;
+  padding: 0.3rem 0.3rem;
+  border: none;
+  background: #000000c7;
+  color: #ffffff;
+  font-size: 1.1rem;
+  border-radius: 1.5rem;
+}
+/*#cancelar{
+background: #6c2c2c;
+}
+#marcar{
+background: #417e36c7;
+}*/
+button#comenzar.btn + button#pausar.btn {
+  margin-top: 0px;
+}
+.icon-reload{
+  
+}
