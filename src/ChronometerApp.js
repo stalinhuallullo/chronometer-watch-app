@@ -9,9 +9,6 @@ export const ChronometerApp = () => {
   const [actualTime, setActualTime] = useState("00:00:00");
   const [listTime, setListTime] = useState([]);
 
-  console.log("tayyyyyyy ==> ", listTime);
-
-
   return (
     <div className="container-guay">
         <Timer 
@@ -28,5 +25,4 @@ export const ChronometerApp = () => {
     </div>
   );
 };
-
 

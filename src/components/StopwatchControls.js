@@ -25,20 +25,20 @@ export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) 
  
 
     const handlerEvents = (event) => {
-        console.log("==> ", event);
-        switch(event){
-          case 'Start':
-            return handlerStart(event)
-          case 'Stop':
-            return handlerStop(event)
-          case 'Reset':
-            return handlerReset(event)
-          case 'Marcar':
-            return handlerMarker(event)
-          default:
-            return event;
-        }
+      console.log("==> ", event);
+      switch(event){
+        case 'Start':
+          return handlerStart(event)
+        case 'Stop':
+          return handlerStop(event)
+        case 'Reset':
+          return handlerReset(event)
+        case 'Marcar':
+          return handlerMarker(event)
+        default:
+          return event;
       }
+    }
 
       
   const handlerStart = () => {
@@ -55,16 +55,14 @@ export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) 
     console.log("handlerReset");
   }
   const  handlerMarker = () => {
-    listTime.push(actualTime);
-    setListTime(listTime);
-    console.log("==> ", listTime);
+    setListTime([...listTime, actualTime ]);
   }
-
 
   return (
     <div className="content-controls">
-        <button className="btn" onClick={() => handlerEvents(textControl)} >{textControl}</button>
-        <button className="btn" onClick={() => handlerEvents(textControlMarker)}>{textControlMarker}</button>
+      <button className="btn" onClick={() => handlerEvents(textControl)} >{textControl}</button>
+      <button className="btn" onClick={() => handlerEvents(textControlMarker)}>{textControlMarker}</button>
     </div>
+    
   )
 }
