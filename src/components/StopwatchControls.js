@@ -6,6 +6,7 @@ export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) 
     const [running, setRunning] = useState(false);
     const [textControl, setTextControl] = useState("Start");
     const [textControlMarker, setTextControlMarker] = useState("Marcar");
+    const url = 'http://localhost:3000/api/marke/';
 
     useEffect(() => {    
         let interval;
@@ -25,7 +26,6 @@ export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) 
  
 
     const handlerEvents = (event) => {
-      console.log("==> ", event);
       switch(event){
         case 'Start':
           return handlerStart(event)
@@ -43,19 +43,57 @@ export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) 
       
   const handlerStart = () => {
     setRunning(true);
-    console.log("handlerStart");
   }
   const handlerStop = () => {
     setRunning(false);
-    console.log("handlerStop");
-
   }
   const handlerReset = () => {
-    setTime(0);
-    console.log("handlerReset");
+    fetch(url + "all", {
+      method: 'DELETE',
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+    .then(response => response.json())
+    .then(json => {
+      console.log("se reseteo con exito");
+      listAll();
+      setTime(0);
+    })
   }
-  const  handlerMarker = () => {
-    setListTime([...listTime, actualTime ]);
+  const handlerMarker = () => {
+
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({"marke": actualTime}),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+      .then(response => response.json())
+      .then(json => {
+        listAll();
+      })
+    //setListTime([...listTime, actualTime ]);
+  }
+
+  const listAll = () => {
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data=>{
+      const list = data.map((item) => {
+        return {
+          "id": item.id,
+          "marke": item.marke,
+        }
+      });
+      setListTime([...list]);
+    });
   }
 
   return (
@@ -63,6 +101,5 @@ export const StopwatchControls = ({setTime, listTime, setListTime, actualTime}) 
       <button className="btn" onClick={() => handlerEvents(textControl)} >{textControl}</button>
       <button className="btn" onClick={() => handlerEvents(textControlMarker)}>{textControlMarker}</button>
     </div>
-    
   )
 }
